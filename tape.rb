@@ -6,7 +6,7 @@ class Tape
   end
 
   def initialize
-    size = 200
+    size = 50
     @tape = Array.new(size, 0)
     @position = (size/2).floor
   end

@@ -3,7 +3,7 @@ load 'card.rb'
 load 'turing_machine.rb'
 
 class Numeric
-  Alph = ("a".."z").to_a
+  Alph = ('a'..'z').to_a
   def alph
     s, q = '', self
     (q, r = (q - 1).divmod(26)); s.prepend(Alph[r]) until q.zero?
@@ -16,18 +16,7 @@ class BusyBeaver
     @number_cards = number_cards
   end
 
-  # def generate_card_permutations(num_states)
-  #   cards = {}
-  #   num_states.each do |i|
-  #     state = i.alph.to_sym
-  #     [0..1].each do |overwrite|
-  #       [:right, :left].each do |direction|
-  #         cards[state] = Card.new({:'0' => [overwrite, direction, :b], :'1' => [overwrite, direction, :c]})
-  #       end
-  #     end
-  #   end
-  # end
-
+  # this doesn't really work for now
   def naive_generate(num_cards)
     cards = {}
     directions = [:right, :left]
@@ -55,30 +44,26 @@ class BusyBeaver
   end
 
   def generate_turing_machines
-    # generate all the possible turing machines that halt
-    # we know that there are [4*(n+1)]^(2*n) possible turing machines
-    # where n is the number of cards
-
     # 1-state, 2-symbol
-    # cards = {
-    #   a: Card.new({:'0' => [1, :right, :halt], :'1' => [nil, nil, nil]})
-    # }
+    one_card = {
+      a: Card.new({:'0' => [1, :right, :halt], :'1' => [nil, nil, nil]})
+    }
 
     # 2-state, 2-symbol
-    # cards = {
-    #   a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
-    #   b: Card.new({:'0' => [1, :left, :a], :'1' => [1, :right, :halt]})
-    # }
+    two_cards = {
+      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
+      b: Card.new({:'0' => [1, :left, :a], :'1' => [1, :right, :halt]})
+    }
 
     # 3-state, 2-symbol
-    # cards = {
-    #   a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :right, :halt]}),
-    #   b: Card.new({:'0' => [0, :right, :c], :'1' => [1, :right, :b]}),
-    #   c: Card.new({:'0' => [1, :left, :c], :'1' => [1, :left, :a]})
-    # }
+    three_cards = {
+      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :right, :halt]}),
+      b: Card.new({:'0' => [0, :right, :c], :'1' => [1, :right, :b]}),
+      c: Card.new({:'0' => [1, :left, :c], :'1' => [1, :left, :a]})
+    }
 
     # 4-state, 2-symbol
-    cards = {
+    four_cards = {
       a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
       b: Card.new({:'0' => [1, :left, :a], :'1' => [0, :left, :c]}),
       c: Card.new({:'0' => [1, :right, :halt], :'1' => [1, :left, :d]}),
@@ -86,22 +71,27 @@ class BusyBeaver
     }
 
     # 5-state, 2-symbol
-    # cards = {
-    #   a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :c]}),
-    #   b: Card.new({:'0' => [1, :right, :c], :'1' => [1, :right, :b]}),
-    #   c: Card.new({:'0' => [1, :right, :d], :'1' => [0, :left, :e]}),
-    #   d: Card.new({:'0' => [1, :left, :a], :'1' => [1, :left, :d]}),
-    #   e: Card.new({:'0' => [1, :right, :halt], :'1' => [0, :left, :a]})
-    # }
+    five_cards = {
+      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :c]}),
+      b: Card.new({:'0' => [1, :right, :c], :'1' => [1, :right, :b]}),
+      c: Card.new({:'0' => [1, :right, :d], :'1' => [0, :left, :e]}),
+      d: Card.new({:'0' => [1, :left, :a], :'1' => [1, :left, :d]}),
+      e: Card.new({:'0' => [1, :right, :halt], :'1' => [0, :left, :a]})
+    }
 
-    @turing_machines = [TuringMachine.new(cards)]
+    @turing_machines = [
+      TuringMachine.new(one_card),
+      TuringMachine.new(two_cards),
+      TuringMachine.new(three_cards),
+      TuringMachine.new(four_cards)
+    ]
     # @turing_machines = [TuringMachine.new(naive_generate(3))]
   end
 
   def run
     @turing_machines.each do |tm|
-      tm.print_tape
       tm.run
+      tm.print_tape
     end
 
     @turing_machines.sort!

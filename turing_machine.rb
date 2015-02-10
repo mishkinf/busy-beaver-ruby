@@ -30,11 +30,10 @@ class TuringMachine
      @tape.set overwrite_value
      direction == :left ? @tape.move_left : @tape.move_right
 
-     # puts "write: #{overwrite_value} move: #{direction} next_state: #{next_state}"
      @card_position = next_state
 
-     print_tape #if size % 100 == 0
-     puts "Percent completed: #{(@steps / 106.0)*100.0}%, Steps: #{@steps}, Size: #{size}" if size % 2 == 0
+     # print_tape #if size % 100 == 0
+     # puts "Percent completed: #{(@steps / 106.0)*100.0}%, Steps: #{@steps}, Size: #{size}" if size % 2 == 0
      next_state == :halt
    end
 
@@ -43,12 +42,8 @@ class TuringMachine
        break if self.iterate
      end
 
-     puts "------------------- @cards -------------------"
-     puts "@cards: #{@cards}"
-
-     puts "************** Result ************"
-     puts size
-
+     puts "Cards: #{@cards}"
+     puts "TURING MACHINE HALTED - Steps: #{@steps}, Size: #{size}"
    end
 
    def size
