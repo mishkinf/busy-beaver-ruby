@@ -66,10 +66,10 @@ class TuringMachine
      puts ""
    end
 
-   def <=>(another_sock)
-     if self.size < another_sock.size
+   def <=>(another_tm)
+     if self.size < another_tm.size
        -1
-     elsif self.size > another_sock.size
+     elsif self.size > another_tm.size
        1
      else
        0
