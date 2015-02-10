@@ -16,7 +16,7 @@ class BusyBeaver
     @number_cards = number_cards
   end
 
-  # this doesn't really work for now
+  # this doesn't really work. need to generate all card permutations. 
   def naive_generate(num_cards)
     cards = {}
     directions = [:right, :left]
@@ -97,17 +97,8 @@ class BusyBeaver
     @turing_machines.sort!
   end
 
-
   def self.card_permutations(n)
     (4*(n+1)) ** (2*n)
-  end
-
-  def print_results
-    puts 'Number of 1s on the tape'
-    @turing_machines.each do |t|
-      t.print_tape
-      puts t.size
-    end
   end
 end
 
