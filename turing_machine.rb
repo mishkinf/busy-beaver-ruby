@@ -42,7 +42,9 @@ class TuringMachine
        break if self.iterate
      end
 
-     puts "Cards: #{@cards}"
+     @cards.each_key do |c|
+       @cards[c].visual_print
+     end
      puts "TURING MACHINE HALTED - Steps: #{@steps}, Size: #{size}"
    end
 

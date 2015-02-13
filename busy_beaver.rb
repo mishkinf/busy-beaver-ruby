@@ -46,37 +46,37 @@ class BusyBeaver
   def generate_turing_machines
     # 1-state, 2-symbol
     one_card = {
-      a: Card.new({:'0' => [1, :right, :halt], :'1' => [nil, nil, nil]})
+      a: Card.new(:a, {:'0' => [1, :right, :halt], :'1' => [nil, nil, nil]})
     }
 
     # 2-state, 2-symbol
     two_cards = {
-      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
-      b: Card.new({:'0' => [1, :left, :a], :'1' => [1, :right, :halt]})
+      a: Card.new(:a, {:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
+      b: Card.new(:b, {:'0' => [1, :left, :a], :'1' => [1, :right, :halt]})
     }
 
     # 3-state, 2-symbol
     three_cards = {
-      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :right, :halt]}),
-      b: Card.new({:'0' => [0, :right, :c], :'1' => [1, :right, :b]}),
-      c: Card.new({:'0' => [1, :left, :c], :'1' => [1, :left, :a]})
+      a: Card.new(:a, {:'0' => [1, :right, :b], :'1' => [1, :right, :halt]}),
+      b: Card.new(:b, {:'0' => [0, :right, :c], :'1' => [1, :right, :b]}),
+      c: Card.new(:c, {:'0' => [1, :left, :c], :'1' => [1, :left, :a]})
     }
 
     # 4-state, 2-symbol
     four_cards = {
-      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
-      b: Card.new({:'0' => [1, :left, :a], :'1' => [0, :left, :c]}),
-      c: Card.new({:'0' => [1, :right, :halt], :'1' => [1, :left, :d]}),
-      d: Card.new({:'0' => [1, :right, :d], :'1' => [0, :right, :a]})
+      a: Card.new(:a, {:'0' => [1, :right, :b], :'1' => [1, :left, :b]}),
+      b: Card.new(:b, {:'0' => [1, :left, :a], :'1' => [0, :left, :c]}),
+      c: Card.new(:c, {:'0' => [1, :right, :halt], :'1' => [1, :left, :d]}),
+      d: Card.new(:d, {:'0' => [1, :right, :d], :'1' => [0, :right, :a]})
     }
 
     # 5-state, 2-symbol
     five_cards = {
-      a: Card.new({:'0' => [1, :right, :b], :'1' => [1, :left, :c]}),
-      b: Card.new({:'0' => [1, :right, :c], :'1' => [1, :right, :b]}),
-      c: Card.new({:'0' => [1, :right, :d], :'1' => [0, :left, :e]}),
-      d: Card.new({:'0' => [1, :left, :a], :'1' => [1, :left, :d]}),
-      e: Card.new({:'0' => [1, :right, :halt], :'1' => [0, :left, :a]})
+      a: Card.new(:a, {:'0' => [1, :right, :b], :'1' => [1, :left, :c]}),
+      b: Card.new(:b, {:'0' => [1, :right, :c], :'1' => [1, :right, :b]}),
+      c: Card.new(:c, {:'0' => [1, :right, :d], :'1' => [0, :left, :e]}),
+      d: Card.new(:d, {:'0' => [1, :left, :a], :'1' => [1, :left, :d]}),
+      e: Card.new(:e, {:'0' => [1, :right, :halt], :'1' => [0, :left, :a]})
     }
 
     @turing_machines = [
