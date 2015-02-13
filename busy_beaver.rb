@@ -91,7 +91,9 @@ class BusyBeaver
   def run
     @turing_machines.each do |tm|
       tm.run
+      puts "Possible card permutations: #{BusyBeaver.card_permutations(tm.num_cards)}"
       tm.print_tape
+
     end
 
     @turing_machines.sort!

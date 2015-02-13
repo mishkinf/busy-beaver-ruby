@@ -48,6 +48,10 @@ class TuringMachine
      puts "TURING MACHINE HALTED - Steps: #{@steps}, Size: #{size}"
    end
 
+   def num_cards
+     @cards.size
+   end
+
    def size
      @tape.size
    end
