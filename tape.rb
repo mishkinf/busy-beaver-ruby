@@ -6,16 +6,18 @@ class Tape
   end
 
   def initialize
-    size = 50
+    size = 1000
     @tape = Array.new(size, 0)
     @position = (size/2).floor
   end
 
   def move_left
+    # puts 'left'
     @position -= 1
   end
 
   def move_right
+    # puts 'right'
     @position += 1
   end
 

@@ -79,11 +79,21 @@ class BusyBeaver
       e: Card.new(:e, {:'0' => [1, :right, :halt], :'1' => [0, :left, :a]})
     }
 
+    # 6-state, 2-symbol
+    six_cards = {
+      a: Card.new(:a, {:'0' => [1, :right, :b], :'1' => [0, :left, :e]}),
+      b: Card.new(:b, {:'0' => [1, :left, :c], :'1' => [0, :right, :a]}),
+      c: Card.new(:c, {:'0' => [1, :left, :d], :'1' => [0, :right, :c]}),
+      d: Card.new(:d, {:'0' => [1, :left, :e], :'1' => [0, :left, :f]}),
+      e: Card.new(:e, {:'0' => [1, :left, :a], :'1' => [1, :left, :c]}),
+      f: Card.new(:f, {:'0' => [1, :left, :e], :'1' => [1, :right, :halt]})
+    }
+
     @turing_machines = [
-      TuringMachine.new(one_card),
-      TuringMachine.new(two_cards),
-      TuringMachine.new(three_cards),
-      TuringMachine.new(four_cards)
+      # TuringMachine.new(one_card),
+      TuringMachine.new(five_cards),
+      # TuringMachine.new(three_cards),
+      # TuringMachine.new(four_cards)
     ]
     # @turing_machines = [TuringMachine.new(naive_generate(3))]
   end
